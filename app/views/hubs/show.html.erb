@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>City:</strong>
+  <%= @hub.city %>
+</p>
+
+<p>
+  <strong>Opening cost:</strong>
+  <%= @hub.opening_cost %>
+</p>
+
+<p>
+  <strong>Rental cost:</strong>
+  <%= @hub.rental_cost %>
+</p>
+
+<p>
+  <strong>Office cost:</strong>
+  <%= @hub.office_cost %>
+</p>
+
+<%= link_to 'Edit', edit_hub_path(@hub) %> |
+<%= link_to 'Back', hubs_path %>
