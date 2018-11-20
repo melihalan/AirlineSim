@@ -1,0 +1,2 @@
+class PlaneModel < ApplicationRecord
+end
