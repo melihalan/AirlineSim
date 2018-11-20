@@ -25,7 +25,6 @@ class HubsController < ApplicationController
   # POST /hubs.json
   def create
     @hub = Hub.new(hub_params)
-
     respond_to do |format|
       if @hub.save
         format.html { redirect_to @hub, notice: 'Hub was successfully created.' }
