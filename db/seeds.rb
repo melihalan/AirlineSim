@@ -43,3 +43,19 @@ PlaneModel.create!(
 )
 
 puts "3 Plane Models have been created."
+
+City.create!(
+  name: "Istanbul",
+  latitude: 41.015137,
+  longtitude: 28.979530,
+  population: 14000000
+)
+
+City.create!(
+  name: "London",
+  latitude: 51.509865,
+  longtitude: -0.118092,
+  population: 7000000
+)
+
+puts "2 Cities have been created."
