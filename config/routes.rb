@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :xroutes
   resources :hubs
   resources :cities
   resources :plane_models
