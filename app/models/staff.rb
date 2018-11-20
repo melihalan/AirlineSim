@@ -1,4 +1,4 @@
 class Staff < ApplicationRecord
-  belongs_to :hub
-  belongs_to :plane
+  belongs_to :hub, optional: true
+  belongs_to :plane, optional: true
 end

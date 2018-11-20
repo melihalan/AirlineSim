@@ -59,3 +59,77 @@ City.create!(
 )
 
 puts "2 Cities have been created."
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "Roger Davis",
+  job: "Pilot",
+  salary: 16000
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "Alonzo Fratuew",
+  job: "Pilot",
+  salary: 16000
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "Rose Grund",
+  job: "Pilot",
+  salary: 16000
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "Mary James",
+  job: "Host",
+  salary: 6000
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "John Alfor",
+  job: "Host",
+  salary: 6000
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "Lora Finas",
+  job: "Host",
+  salary: 6000
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "George Pilotovski",
+  job: "Officer",
+  salary: 4500
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "Ana Pilotovski",
+  job: "Officer",
+  salary: 4500
+)
+
+Staff.create!(
+  hub_id: nil,
+  plane_id: nil,
+  name: "Sarah Jonas",
+  job: "Officer",
+  salary: 4500
+)
+
+puts "9 staffs have been created."
