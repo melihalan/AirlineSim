@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hub: one
+  plane: one
+  job: MyString
+  salary: 1
+
+two:
+  hub: two
+  plane: two
+  job: MyString
+  salary: 1

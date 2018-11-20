@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hub: one
+  city: one
+  distance: 1
+  max_num_pas: 1
+  operating_cost: 1
+
+two:
+  hub: two
+  city: two
+  distance: 1
+  max_num_pas: 1
+  operating_cost: 1

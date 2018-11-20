@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Schedules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plane</th>
+      <th>Xroute</th>
+      <th>Duration</th>
+      <th>Td1</th>
+      <th>Ta1</th>
+      <th>Td2</th>
+      <th>Ta2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.plane %></td>
+        <td><%= schedule.xroute %></td>
+        <td><%= schedule.duration %></td>
+        <td><%= schedule.td1 %></td>
+        <td><%= schedule.ta1 %></td>
+        <td><%= schedule.td2 %></td>
+        <td><%= schedule.ta2 %></td>
+        <td><%= link_to 'Show', schedule %></td>
+        <td><%= link_to 'Edit', edit_schedule_path(schedule) %></td>
+        <td><%= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Schedule', new_schedule_path %>

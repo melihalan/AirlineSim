@@ -1,0 +1,37 @@
+<%= form_with(model: hub, local: true) do |form| %>
+  <% if hub.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(hub.errors.count, "error") %> prohibited this hub from being saved:</h2>
+
+      <ul>
+      <% hub.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :city_id %>
+    <%= form.text_field :city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :opening_cost %>
+    <%= form.number_field :opening_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rental_cost %>
+    <%= form.number_field :rental_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_cost %>
+    <%= form.number_field :office_cost %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

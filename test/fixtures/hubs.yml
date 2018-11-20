@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: one
+  opening_cost: 1
+  rental_cost: 1
+  office_cost: 1
+
+two:
+  city: two
+  opening_cost: 1
+  rental_cost: 1
+  office_cost: 1

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  range: 1
+  avg_speed: 1
+  max_pas: 1
+  fuel_use: 1
+  cost: 1
+  maintanence: 1
+  pilots: 1
+  hosts: 1
+
+two:
+  name: MyString
+  range: 1
+  avg_speed: 1
+  max_pas: 1
+  fuel_use: 1
+  cost: 1
+  maintanence: 1
+  pilots: 1
+  hosts: 1

@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Xroutes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hub</th>
+      <th>City</th>
+      <th>Distance</th>
+      <th>Max num pas</th>
+      <th>Operating cost</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @xroutes.each do |xroute| %>
+      <tr>
+        <td><%= xroute.hub %></td>
+        <td><%= xroute.city %></td>
+        <td><%= xroute.distance %></td>
+        <td><%= xroute.max_num_pas %></td>
+        <td><%= xroute.operating_cost %></td>
+        <td><%= link_to 'Show', xroute %></td>
+        <td><%= link_to 'Edit', edit_xroute_path(xroute) %></td>
+        <td><%= link_to 'Destroy', xroute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Xroute', new_xroute_path %>

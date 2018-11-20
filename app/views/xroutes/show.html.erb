@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hub:</strong>
+  <%= @xroute.hub %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @xroute.city %>
+</p>
+
+<p>
+  <strong>Distance:</strong>
+  <%= @xroute.distance %>
+</p>
+
+<p>
+  <strong>Max num pas:</strong>
+  <%= @xroute.max_num_pas %>
+</p>
+
+<p>
+  <strong>Operating cost:</strong>
+  <%= @xroute.operating_cost %>
+</p>
+
+<%= link_to 'Edit', edit_xroute_path(@xroute) %> |
+<%= link_to 'Back', xroutes_path %>

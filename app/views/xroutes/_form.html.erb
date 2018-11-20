@@ -1,0 +1,42 @@
+<%= form_with(model: xroute, local: true) do |form| %>
+  <% if xroute.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(xroute.errors.count, "error") %> prohibited this xroute from being saved:</h2>
+
+      <ul>
+      <% xroute.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :hub_id %>
+    <%= form.text_field :hub_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city_id %>
+    <%= form.text_field :city_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :distance %>
+    <%= form.number_field :distance %>
+  </div>
+
+  <div class="field">
+    <%= form.label :max_num_pas %>
+    <%= form.number_field :max_num_pas %>
+  </div>
+
+  <div class="field">
+    <%= form.label :operating_cost %>
+    <%= form.number_field :operating_cost %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
