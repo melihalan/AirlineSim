@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Plane:</strong>
+  <%= @schedule.plane %>
+</p>
+
+<p>
+  <strong>Xroute:</strong>
+  <%= @schedule.xroute %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @schedule.duration %>
+</p>
+
+<p>
+  <strong>Td1:</strong>
+  <%= @schedule.td1 %>
+</p>
+
+<p>
+  <strong>Ta1:</strong>
+  <%= @schedule.ta1 %>
+</p>
+
+<p>
+  <strong>Td2:</strong>
+  <%= @schedule.td2 %>
+</p>
+
+<p>
+  <strong>Ta2:</strong>
+  <%= @schedule.ta2 %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
+<%= link_to 'Back', schedules_path %>

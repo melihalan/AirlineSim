@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plane: one
+  xroute: one
+  duration: 1
+  td1: 1
+  ta1: 1
+  td2: 1
+  ta2: 1
+
+two:
+  plane: two
+  xroute: two
+  duration: 1
+  td1: 1
+  ta1: 1
+  td2: 1
+  ta2: 1
