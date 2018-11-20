@@ -13,4 +13,20 @@ class Hub < ApplicationRecord
     return self.opening_cost, self.rental_cost, self.office_cost
   end
 
+  def name
+    self.city.name
+  end
+
+  def latitude
+    self.city.latitude
+  end
+
+  def longtitude
+    self.city.longtitude
+  end
+
+  def population
+    self.city.population
+  end
+
 end

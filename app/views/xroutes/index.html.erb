@@ -17,8 +17,8 @@
   <tbody>
     <% @xroutes.each do |xroute| %>
       <tr>
-        <td><%= xroute.hub %></td>
-        <td><%= xroute.city %></td>
+        <td><%= xroute.hub.name %></td>
+        <td><%= xroute.city.name %></td>
         <td><%= xroute.distance %></td>
         <td><%= xroute.max_num_pas %></td>
         <td><%= xroute.operating_cost %></td>
