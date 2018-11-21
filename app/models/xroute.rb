@@ -25,4 +25,10 @@ class Xroute < ApplicationRecord
     return self.distance, self.max_num_pas, self.operating_cost
   end
 
+  def name
+    @hub = self.hub.name
+    @city = self.city.name
+    return "#{@hub} - #{@city}"
+  end
+
 end

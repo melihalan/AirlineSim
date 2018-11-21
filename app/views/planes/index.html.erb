@@ -14,8 +14,8 @@
   <tbody>
     <% @planes.each do |plane| %>
       <tr>
-        <td><%= plane.plane_model %></td>
-        <td><%= plane.xroute %></td>
+        <td><%= plane.plane_model.name %></td>
+        <td><%= plane.xroute.name %></td>
         <td><%= link_to 'Show', plane %></td>
         <td><%= link_to 'Edit', edit_plane_path(plane) %></td>
         <td><%= link_to 'Destroy', plane, method: :delete, data: { confirm: 'Are you sure?' } %></td>
