@@ -16,14 +16,18 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="control-group">
     <%= form.label :hub_id %>
-    <%= form.text_field :hub_id %>
+    <div class="controls">
+      <%= collection_select( :staff, :hub_id, Hub.all, :id, :name, { :include_blank => true }, { :multiple => false } ) %>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="control-group">
     <%= form.label :plane_id %>
-    <%= form.text_field :plane_id %>
+    <div class="controls">
+      <%= collection_select( :staff, :plane_id, Plane.all, :id, :name, { :include_blank => true }, { :multiple => false } ) %>
+    </div>
   </div>
 
   <div class="field">

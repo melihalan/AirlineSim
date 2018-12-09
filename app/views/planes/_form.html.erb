@@ -11,14 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="control-group">
     <%= form.label :plane_model_id %>
-    <%= form.text_field :plane_model_id %>
+    <div class="controls">
+      <%= collection_select( :plane, :plane_model_id, PlaneModel.all, :id, :name, {}, { :multiple => false } ) %>
+    </div>
   </div>
 
-  <div class="field">
+  <div class="control-group">
     <%= form.label :xroute_id %>
-    <%= form.text_field :xroute_id %>
+    <div class="controls">
+      <%= collection_select( :plane, :xroute_id, Xroute.all, :id, :name, {}, { :multiple => false } ) %>
+    </div>
   </div>
 
   <div class="actions">
