@@ -2,12 +2,12 @@
 
 <p>
   <strong>Plane model:</strong>
-  <%= @plane.plane_model %>
+  <%= @plane.plane_model.name %>
 </p>
 
 <p>
   <strong>Xroute:</strong>
-  <%= @plane.xroute %>
+  <%= @plane.xroute.name %>
 </p>
 
 <%= link_to 'Edit', edit_plane_path(@plane) %> |

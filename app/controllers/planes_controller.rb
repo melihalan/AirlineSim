@@ -69,6 +69,6 @@ class PlanesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plane_params
-      params.require(:plane).permit(:plane_model_id, :xroute_id)
+      params.require(:plane).permit(:plane_model_id, :xroute_id, staff_ids: [])
     end
 end
