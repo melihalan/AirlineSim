@@ -19,8 +19,8 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.plane %></td>
-        <td><%= schedule.xroute %></td>
+        <td><%= schedule.plane.name %></td>
+        <td><%= schedule.xroute.name %></td>
         <td><%= schedule.duration %></td>
         <td><%= schedule.td1 %></td>
         <td><%= schedule.ta1 %></td>

@@ -25,6 +25,13 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <%= form.label :staff_ids %>
+    <div class="controls">
+      <%= collection_select( :plane, :staff_ids, Staff.all, :id, :name, {}, { multiple: true }) %>
+    </div>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
