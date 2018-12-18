@@ -9,6 +9,9 @@
       <th>Latitude</th>
       <th>Longtitude</th>
       <th>Population</th>
+      <th>Country</th>
+      <th>zone</th>
+      <th>Available Slots</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +23,9 @@
         <td><%= city.latitude %></td>
         <td><%= city.longtitude %></td>
         <td><%= city.population %></td>
+        <td><%= city.country %></td>
+        <td><%= city.territory %></td>
+        <td><%= city.slots %></td>
         <td><%= link_to 'Show', city %></td>
         <td><%= link_to 'Edit', edit_city_path(city) %></td>
         <td><%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>

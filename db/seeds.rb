@@ -6,6 +6,26 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'csv'
+
+CSV.foreach(Rails.root.join('lib/Assets/Cities.csv'), headers: true) do |row|
+  City.create!(
+    name: row[0],
+    latitude: row[1],
+    longtitude: row[2],
+    population: row[3],
+    country: row[4],
+    territory: row[5],
+    slots: row[6],
+    ground_operations: row[7],
+    landing_cost: row[8],
+    boarding_cost: row[9],
+    space_rent: row[10]
+  )
+end
+
+puts "Cities have been loaded."
+
 PlaneModel.create!(
   name: "Boeing 737",
   range: 4500,
@@ -43,22 +63,6 @@ PlaneModel.create!(
 )
 
 puts "3 Plane Models have been created."
-
-City.create!(
-  name: "Istanbul",
-  latitude: 41.015137,
-  longtitude: 28.979530,
-  population: 14000000
-)
-
-City.create!(
-  name: "London",
-  latitude: 51.509865,
-  longtitude: -0.118092,
-  population: 7000000
-)
-
-puts "2 Cities have been created."
 
 Staff.create!(
   hub_id: nil,

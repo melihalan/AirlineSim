@@ -10,15 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_193111) do
+ActiveRecord::Schema.define(version: 2018_12_18_204652) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.float "latitude"
     t.float "longtitude"
-    t.integer "population"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "country"
+    t.string "territory"
+    t.integer "slots"
+    t.integer "ground_operations"
+    t.integer "landing_cost"
+    t.integer "boarding_cost"
+    t.integer "space_rent"
+    t.integer "population"
   end
 
   create_table "hubs", force: :cascade do |t|
