@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_20_155053) do
+ActiveRecord::Schema.define(version: 2018_12_17_193111) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -60,8 +60,6 @@ ActiveRecord::Schema.define(version: 2018_11_20_155053) do
     t.integer "duration"
     t.integer "td1"
     t.integer "ta1"
-    t.integer "td2"
-    t.integer "ta2"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plane_id"], name: "index_schedules_on_plane_id"
