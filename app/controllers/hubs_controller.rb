@@ -15,6 +15,9 @@ class HubsController < ApplicationController
   # GET /hubs/new
   def new
     @hub = Hub.new
+    @territories = Territory.all
+    @countries = Country.all
+    @cities = City.all
   end
 
   # GET /hubs/1/edit

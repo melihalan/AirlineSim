@@ -8,23 +8,35 @@
 
 require 'csv'
 
-CSV.foreach(Rails.root.join('lib/Assets/Cities.csv'), headers: true) do |row|
-  City.create!(
-    name: row[0],
-    latitude: row[1],
-    longtitude: row[2],
-    population: row[3],
-    country: row[4],
-    territory: row[5],
-    slots: row[6],
-    ground_operations: row[7],
-    landing_cost: row[8],
-    boarding_cost: row[9],
-    space_rent: row[10]
+CSV.foreach(Rails.root.join('lib/seeds/Territories.csv'), headers: true) do |row|
+  Territory.create!(
+    name: row[0]
   )
 end
 
-puts "Cities have been loaded."
+CSV.foreach(Rails.root.join('lib/seeds/Countries.csv'), headers: true) do |row|
+  Country.create!(
+    name: row[0],
+    territory_id: row[1]
+  )
+end
+
+CSV.foreach(Rails.root.join('lib/seeds/Cities.csv'), headers: true) do |row|
+  City.create!(
+    country_id: row[0],
+    name: row[1],
+    latitude: row[2],
+    longtitude: row[3],
+    population: row[4],
+    slots: row[5],
+    ground_operations: row[6],
+    landing_cost: row[7],
+    boarding_cost: row[8],
+    space_rent: row[9]
+  )
+end
+
+puts "Territories, Countries and Cities have been loaded."
 
 PlaneModel.create!(
   name: "Boeing 737",
