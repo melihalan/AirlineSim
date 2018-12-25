@@ -1,5 +1,6 @@
-<li>
-  <p>
-    <%= country.name %>
-  </p>
-</li>
+<h2>Select a Country</h2>
+<ol class="country">
+  <% @list.each do |country| %>
+    <%= link_to country.name, filter_cities_path(country_id: country.id), remote:true %>
+  <% end %>
+</ol>

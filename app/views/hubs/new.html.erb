@@ -2,28 +2,17 @@
 
 <section id= "territory-section">
   <h2>Select a Territory</h2>
-  <ol id= "territory">
+  <ol class="territory">
     <% @territories.each do |t| %>
-      <%= link_to t.name, "#", id: t.name %>
+      <%= link_to t.name, filter_countries_path(territory_id: t.id), remote: true %>
     <% end %>
   </ol>
 </section>
 
 <section id= "country-section">
-  <h2>Select a Country</h2>
-  <ol id= "country">
-    <%= render @countries %>
-  </ol>
 </section>
 
 <section id= "city-section">
-  <h2>Select a City</h2>
-  <ol id= "city">
-    <%= render @cities %>
-  </ol>
 </section>
-
-
-<%= render 'form', hub: @hub %>
 
 <%= link_to 'Back', hubs_path %>
