@@ -1,3 +1,4 @@
 class PlaneModel < ApplicationRecord
-  has_many :planes
+  belongs_to :plane_manufacturers
+  has_many :seat_configuration
 end

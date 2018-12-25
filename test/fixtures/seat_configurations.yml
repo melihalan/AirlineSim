@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  first_class: 1
+  business_class: 1
+  economy_class: 1
+  passenger: 1
+
+two:
+  name: MyString
+  first_class: 1
+  business_class: 1
+  economy_class: 1
+  passenger: 1

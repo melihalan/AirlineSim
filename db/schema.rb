@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_192529) do
+ActiveRecord::Schema.define(version: 2018_12_25_194042) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(version: 2018_12_19_192529) do
     t.integer "space_rent"
     t.integer "population"
     t.integer "country_id"
+    t.integer "hub_opening_cost"
+    t.integer "accomadation_cost"
+    t.integer "available_slots"
     t.index ["country_id"], name: "index_cities_on_country_id"
   end
 
@@ -46,6 +49,12 @@ ActiveRecord::Schema.define(version: 2018_12_19_192529) do
     t.index ["city_id"], name: "index_hubs_on_city_id"
   end
 
+  create_table "plane_manufacturers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "plane_models", force: :cascade do |t|
     t.string "name"
     t.integer "range"
@@ -58,6 +67,10 @@ ActiveRecord::Schema.define(version: 2018_12_19_192529) do
     t.integer "hosts"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "size"
+    t.string "code"
+    t.integer "plane_manufacturer_id"
+    t.index ["plane_manufacturer_id"], name: "index_plane_models_on_plane_manufacturer_id"
   end
 
   create_table "planes", force: :cascade do |t|
@@ -81,6 +94,18 @@ ActiveRecord::Schema.define(version: 2018_12_19_192529) do
     t.index ["xroute_id"], name: "index_schedules_on_xroute_id"
   end
 
+  create_table "seat_configurations", force: :cascade do |t|
+    t.string "name"
+    t.integer "first_class"
+    t.integer "business_class"
+    t.integer "economy_class"
+    t.integer "passenger"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "plane_model_id"
+    t.index ["plane_model_id"], name: "index_seat_configurations_on_plane_model_id"
+  end
+
   create_table "staffs", force: :cascade do |t|
     t.integer "hub_id"
     t.integer "plane_id"
@@ -99,16 +124,20 @@ ActiveRecord::Schema.define(version: 2018_12_19_192529) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "xroutes", force: :cascade do |t|
-    t.integer "hub_id"
-    t.integer "city_id"
-    t.integer "distance"
-    t.integer "max_num_pas"
-    t.integer "operating_cost"
+  create_table "turns", force: :cascade do |t|
+    t.integer "month"
+    t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_xroutes_on_city_id"
-    t.index ["hub_id"], name: "index_xroutes_on_hub_id"
+  end
+
+  create_table "xroutes", force: :cascade do |t|
+    t.integer "distance"
+    t.integer "max_num_pas"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "origin"
+    t.integer "destination"
   end
 
 end

@@ -1,19 +1,20 @@
 class Xroute < ApplicationRecord
 
-  belongs_to :hub
-  belongs_to :city
-  has_many :planes
-  has_many :schedules
+  has_many :city
+  has_many :user
+  has_many :flight
 
   after_create :calculate, on: :create
 
   def calculate                                     #Returns distance between 2 cities
     @rad_per_deg = Math::PI/180                     # PI / 180
     @rkm = 6371                                     # Earth radius in kilometers
-    @lat1_rad = self.hub.latitude * @rad_per_deg
-    @lon1_rad = self.hub.longtitude * @rad_per_deg
-    @lat2_rad = self.city.latitude * @rad_per_deg
-    @lon2_rad = self.city.longtitude * @rad_per_deg
+    @origin = City.find(self.origin)
+    @destination = City.find(self.destination)
+    @lat1_rad = @origin.latitude * @rad_per_deg
+    @lon1_rad = @origin.longtitude * @rad_per_deg
+    @lat2_rad = @destination.latitude * @rad_per_deg
+    @lon2_rad = @destination.longtitude * @rad_per_deg
     @dlat_rad = @lat2_rad - @lat1_rad               # Delta, converted to rad
     @dlon_rad = @lon2_rad - @lon1_rad               # Delta, converted to rad
 
@@ -21,12 +22,11 @@ class Xroute < ApplicationRecord
     c = 2 * Math::atan2(Math::sqrt(a), Math::sqrt(1-a))
 
     @distance = @rkm * c                            # Delta in kilometers
-    self.update(distance: @distance, max_num_pas: (self.hub.population + self.city.population) / 10, operating_cost: @distance * 10)
-    return self.distance, self.max_num_pas, self.operating_cost
+    self.update(distance: @distance, max_num_pas: (@origin.population + @destination.population) / 10)
+    return self.distance, self.max_num_pas
   end
 
   def name
-    return "#{self.hub.name}-#{self.city.name}"
+    return "#{@origin.name}-#{@destination.name}"
   end
-
 end
