@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  em: 1
+  lm: 1
+  nn: 1
+  an: 1
+  eg: 1
+  le: 1
+
+two:
+  em: 1
+  lm: 1
+  nn: 1
+  an: 1
+  eg: 1
+  le: 1

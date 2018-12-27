@@ -1,6 +1,7 @@
 class Hub < ApplicationRecord
 
   belongs_to :city
+  belongs_to :user, optional:true
   has_many :xroute
   has_many :staffs
 
@@ -9,8 +10,9 @@ class Hub < ApplicationRecord
 
   def calculate
     @population = self.city.population
-    self.update(opening_cost: @population/10, rental_cost: @population/100, office_cost: self.staffs.count*2000)
-    return self.opening_cost, self.rental_cost, self.office_cost
+    @slots = self.slots
+    self.update(rental_cost: @population/2000*@slots, office_cost: self.staffs.count*2000)
+    return self.rental_cost, self.office_cost
   end
 
   def name

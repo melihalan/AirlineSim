@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  flight: one
+  category: MyString
+  sub_category: MyString
+  ppp: 1
+
+two:
+  flight: two
+  category: MyString
+  sub_category: MyString
+  ppp: 1

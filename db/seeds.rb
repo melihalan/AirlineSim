@@ -43,11 +43,12 @@ PlaneModel.create!(
   range: 4500,
   avg_speed: 750,
   max_pas: 180,
-  fuel_use: 2,
+  fuel_use: 50,
   cost: 47000000,
   maintanence: 150000,
   pilots: 2,
-  hosts: 3
+  hosts: 3,
+  size: 1
 )
 
 PlaneModel.create!(
@@ -55,11 +56,12 @@ PlaneModel.create!(
   range: 4000,
   avg_speed: 800,
   max_pas: 160,
-  fuel_use: 2,
+  fuel_use: 50,
   cost: 40000000,
   maintanence: 100000,
   pilots: 2,
-  hosts: 3
+  hosts: 3,
+  size: 1
 )
 
 PlaneModel.create!(
@@ -67,11 +69,12 @@ PlaneModel.create!(
   range: 6000,
   avg_speed: 800,
   max_pas: 450,
-  fuel_use: 4,
+  fuel_use: 100,
   cost: 92000000,
   maintanence: 200000,
   pilots: 2,
-  hosts: 6
+  hosts: 6,
+  size: 2
 )
 
 puts "3 Plane Models have been created."

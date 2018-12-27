@@ -25,10 +25,4 @@ class City < ApplicationRecord
     @territory = Territory.find(@territory_id).name
     return @territory
   end
-
-  def country
-    @country_id = self.country_id
-    @country = Country.find(@country_id).name
-    return @country
-  end
 end

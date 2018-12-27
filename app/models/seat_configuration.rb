@@ -1,9 +1,9 @@
 class SeatConfiguration < ApplicationRecord
   belongs_to :plane_models
-  
-  def calculate
+
+  def passenger
     @passenger = self.economy_class + self.business_class + self.first_class
     self.update(passenger: @passenger)
-    return self.passenger
+    return @passenger
   end
 end

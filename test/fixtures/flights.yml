@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  xroute: one
+  schedule: one
+  departure: 2018-12-27 13:47:09
+  duration: 1
+  air_tax: 1
+  fuel_cost: 1
+  flight_number: MyString
+
+two:
+  xroute: two
+  schedule: two
+  departure: 2018-12-27 13:47:09
+  duration: 1
+  air_tax: 1
+  fuel_cost: 1
+  flight_number: MyString

@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_25_194042) do
+ActiveRecord::Schema.define(version: 2018_12_27_212817) do
+
+  create_table "amenities", force: :cascade do |t|
+    t.integer "flight_id"
+    t.string "category"
+    t.string "sub_category"
+    t.integer "ppp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["flight_id"], name: "index_amenities_on_flight_id"
+  end
+
+  create_table "asset_sales", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "turn_id"
+    t.string "category"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+    t.index ["book_id"], name: "index_asset_sales_on_book_id"
+    t.index ["turn_id"], name: "index_asset_sales_on_turn_id"
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "balance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_books_on_user_id"
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
@@ -39,14 +69,55 @@ ActiveRecord::Schema.define(version: 2018_12_25_194042) do
     t.index ["territory_id"], name: "index_countries_on_territory_id"
   end
 
+  create_table "demands", force: :cascade do |t|
+    t.integer "em"
+    t.integer "lm"
+    t.integer "nn"
+    t.integer "an"
+    t.integer "eg"
+    t.integer "le"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "day"
+  end
+
+  create_table "flights", force: :cascade do |t|
+    t.integer "xroute_id"
+    t.integer "schedule_id"
+    t.datetime "departure"
+    t.integer "duration"
+    t.integer "air_tax"
+    t.integer "fuel_cost"
+    t.string "flight_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "arrival"
+    t.index ["schedule_id"], name: "index_flights_on_schedule_id"
+    t.index ["xroute_id"], name: "index_flights_on_xroute_id"
+  end
+
   create_table "hubs", force: :cascade do |t|
     t.integer "city_id"
-    t.integer "opening_cost"
     t.integer "rental_cost"
     t.integer "office_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "slots"
     t.index ["city_id"], name: "index_hubs_on_city_id"
+    t.index ["user_id"], name: "index_hubs_on_user_id"
+  end
+
+  create_table "investments", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "turn_id"
+    t.string "category"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+    t.index ["book_id"], name: "index_investments_on_book_id"
+    t.index ["turn_id"], name: "index_investments_on_turn_id"
   end
 
   create_table "plane_manufacturers", force: :cascade do |t|
@@ -70,28 +141,51 @@ ActiveRecord::Schema.define(version: 2018_12_25_194042) do
     t.string "size"
     t.string "code"
     t.integer "plane_manufacturer_id"
+    t.integer "counter"
     t.index ["plane_manufacturer_id"], name: "index_plane_models_on_plane_manufacturer_id"
   end
 
   create_table "planes", force: :cascade do |t|
     t.integer "plane_model_id"
-    t.integer "xroute_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "location"
+    t.integer "seat_configuration"
     t.index ["plane_model_id"], name: "index_planes_on_plane_model_id"
-    t.index ["xroute_id"], name: "index_planes_on_xroute_id"
+    t.index ["user_id"], name: "index_planes_on_user_id"
+  end
+
+  create_table "revenues", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "turn_id"
+    t.string "category"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+    t.index ["book_id"], name: "index_revenues_on_book_id"
+    t.index ["turn_id"], name: "index_revenues_on_turn_id"
+  end
+
+  create_table "running_costs", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "turn_id"
+    t.string "category"
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "description"
+    t.index ["book_id"], name: "index_running_costs_on_book_id"
+    t.index ["turn_id"], name: "index_running_costs_on_turn_id"
   end
 
   create_table "schedules", force: :cascade do |t|
     t.integer "plane_id"
-    t.integer "xroute_id"
-    t.integer "duration"
-    t.integer "td1"
-    t.integer "ta1"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "date"
     t.index ["plane_id"], name: "index_schedules_on_plane_id"
-    t.index ["xroute_id"], name: "index_schedules_on_xroute_id"
   end
 
   create_table "seat_configurations", force: :cascade do |t|
@@ -103,6 +197,7 @@ ActiveRecord::Schema.define(version: 2018_12_25_194042) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "plane_model_id"
+    t.integer "cost"
     t.index ["plane_model_id"], name: "index_seat_configurations_on_plane_model_id"
   end
 
@@ -114,8 +209,12 @@ ActiveRecord::Schema.define(version: 2018_12_25_194042) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "user_id"
+    t.integer "runtime", default: 0
+    t.integer "location"
     t.index ["hub_id"], name: "index_staffs_on_hub_id"
     t.index ["plane_id"], name: "index_staffs_on_plane_id"
+    t.index ["user_id"], name: "index_staffs_on_user_id"
   end
 
   create_table "territories", force: :cascade do |t|
@@ -124,9 +223,28 @@ ActiveRecord::Schema.define(version: 2018_12_25_194042) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.integer "flight_id"
+    t.integer "base_cost"
+    t.integer "price"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "ppp_first"
+    t.integer "ppp_business"
+    t.integer "ppp_economy"
+    t.index ["flight_id"], name: "index_tickets_on_flight_id"
+  end
+
   create_table "turns", force: :cascade do |t|
-    t.integer "month"
-    t.integer "year"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "term"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "pw"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -138,6 +256,9 @@ ActiveRecord::Schema.define(version: 2018_12_25_194042) do
     t.datetime "updated_at", null: false
     t.integer "origin"
     t.integer "destination"
+    t.integer "ecd"
+    t.integer "bcd"
+    t.integer "fcd"
   end
 
 end
