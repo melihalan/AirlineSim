@@ -1,0 +1,22 @@
+<div class="details">
+  <h1><%= @city.name %></h1>
+  <ol>
+    Population: <%= @city.population %><br>
+    Total Slots: <%= @city.slots %><br>
+    Available Slots: <%= @city.available_slots %><br>
+    Cost for Opening Hub: <%= @city.hub_opening_cost %><br>
+  </ol>
+  <h4>Coordinates</h4>
+  <ol>
+    Latitude: <%= @city.latitude %><br>
+    Longtitude: <%= @city.longtitude %><br>
+  </ol>
+  <h4>Fligt Related Costs</h4>
+  <ol>
+    Boarding Cost / Passenger: <%= @city.boarding_cost %><br>
+    Landing Cost / Plane: <%= @city.landing_cost %><br>
+    Overnight Space / Plane / 8 Hours: <%= @city.space_rent %><br>
+    Accomodation Cost / Staff / Night: <%= @city.accomadation_cost %><br>
+  </ol>
+</div>
+<p><%= link_to "Back to City Selection", filter_cities_path(country_id: Country.find(@city.country_id)), remote:true %></p>

@@ -9,6 +9,14 @@ class CitiesController < ApplicationController
     end
   end
 
+  def detail
+    @city = City.find(params[:city_id])
+    respond_to do |format|
+      format.html { redirect_to @city}
+      format.js
+    end
+  end
+
   # GET /cities
   # GET /cities.json
   def index

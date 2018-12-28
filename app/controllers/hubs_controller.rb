@@ -15,9 +15,6 @@ class HubsController < ApplicationController
   # GET /hubs/new
   def new
     @hub = Hub.new
-    @territories = Territory.all
-    @countries = Country.all
-    @cities = City.all
   end
 
   # GET /hubs/1/edit
@@ -71,6 +68,6 @@ class HubsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hub_params
-      params.permit(:city_id, :opening_cost, :rental_cost, :office_cost)
+      params.permit(:city_id, :opening_cost, :rental_cost, :office_cost, :user_id)
     end
 end

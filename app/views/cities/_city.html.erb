@@ -1,6 +1,0 @@
-<h2>Select a City</h2>
-<ol class="city">
-  <% @list.each do |city| %>
-    <%= link_to city.name, hubs_path(city_id: city.id), method: :post %>
-  <% end %>
-</ol>

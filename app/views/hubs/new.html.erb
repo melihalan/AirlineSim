@@ -1,12 +1,7 @@
 <h1>Create a new Hub</h1>
 
 <section id= "territory-section">
-  <h2>Select a Territory</h2>
-  <ol class="territory">
-    <% @territories.each do |t| %>
-      <%= link_to t.name, filter_countries_path(territory_id: t.id), remote: true %>
-    <% end %>
-  </ol>
+  <%= render partial: 'territories/list' %>
 </section>
 
 <section id= "country-section">

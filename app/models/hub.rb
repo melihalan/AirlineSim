@@ -5,8 +5,7 @@ class Hub < ApplicationRecord
   has_many :xroute
   has_many :staffs
 
-  after_create :calculate, on: :create
-
+  #after_create :calculate, on: :create
 
   def calculate
     @population = self.city.population
