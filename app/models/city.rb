@@ -2,6 +2,10 @@ class City < ApplicationRecord
   belongs_to :country
   has_many :hubs
 
+  def timezone
+    @time_zone = Timezone::Zone.new(lat: self.latitude, lon: self.longtitude)
+  end
+
   def calculate
     @population = self.population
     @pop_slots = @population*self.slots/self.available_slots

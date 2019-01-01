@@ -59,3 +59,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
 
 gem 'devise', '~> 4.2'
+
+gem 'geonames', '~> 0.3.3'
