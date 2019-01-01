@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_130824) do
+ActiveRecord::Schema.define(version: 2018_12_28_100245) do
 
   create_table "amenities", force: :cascade do |t|
     t.integer "flight_id"
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_130824) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.integer "user_id"
-    t.integer "runtime", default: 0
+    t.integer "runtime"
     t.integer "location"
     t.index ["hub_id"], name: "index_staffs_on_hub_id"
     t.index ["plane_id"], name: "index_staffs_on_plane_id"
