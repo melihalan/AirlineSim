@@ -7,5 +7,5 @@ class PlaneModel < ApplicationRecord
     self.update(counter: @counter)
     return @counter
   end
-
+  
 end

@@ -1,0 +1,6 @@
+<h2>Plane Manufacturers</h2>
+<ol class="plane_manufacturer">
+  <% PlaneManufacturer.all.each do |pm| %>
+    <%= link_to pm.name, filter_plane_model_families_path(plane_manufacturer_id: pm.id), remote:true %>
+  <% end %>
+</ol>

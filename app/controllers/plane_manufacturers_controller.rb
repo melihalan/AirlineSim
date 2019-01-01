@@ -1,0 +1,2 @@
+class PlaneManufacturersController < ApplicationController
+end

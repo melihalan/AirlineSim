@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_100245) do
+ActiveRecord::Schema.define(version: 2019_01_01_181358) do
+
+  create_table "aircraft_leasings", force: :cascade do |t|
+    t.string "name"
+    t.integer "tier"
+    t.float "discount_factor"
+    t.integer "lease_time"
+    t.float "month_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "amenities", force: :cascade do |t|
     t.integer "flight_id"
@@ -34,6 +44,18 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
     t.index ["turn_id"], name: "index_asset_sales_on_turn_id"
   end
 
+  create_table "banks", force: :cascade do |t|
+    t.string "name"
+    t.integer "tier"
+    t.float "interest_rate_loan"
+    t.integer "max_limit_loan"
+    t.integer "payback_time"
+    t.float "interest_rate_loc"
+    t.integer "max_limit_loc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.integer "user_id"
     t.integer "balance"
@@ -49,7 +71,6 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "slots"
-    t.integer "ground_operations"
     t.integer "landing_cost"
     t.integer "boarding_cost"
     t.integer "space_rent"
@@ -67,6 +88,20 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["territory_id"], name: "index_countries_on_territory_id"
+  end
+
+  create_table "credit_books", force: :cascade do |t|
+    t.integer "bank_id"
+    t.integer "user_id"
+    t.string "product"
+    t.integer "balance"
+    t.integer "payback_term"
+    t.integer "interest"
+    t.datetime "turn"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bank_id"], name: "index_credit_books_on_bank_id"
+    t.index ["user_id"], name: "index_credit_books_on_user_id"
   end
 
   create_table "demands", force: :cascade do |t|
@@ -120,10 +155,41 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
     t.index ["turn_id"], name: "index_investments_on_turn_id"
   end
 
+  create_table "order_books", force: :cascade do |t|
+    t.integer "aircraft_leasing_id"
+    t.integer "user_id"
+    t.integer "plane_model_family_id"
+    t.integer "plane_model_id"
+    t.integer "que_number"
+    t.datetime "delivery_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aircraft_leasing_id"], name: "index_order_books_on_aircraft_leasing_id"
+    t.index ["plane_model_family_id"], name: "index_order_books_on_plane_model_family_id"
+    t.index ["plane_model_id"], name: "index_order_books_on_plane_model_id"
+    t.index ["user_id"], name: "index_order_books_on_user_id"
+  end
+
   create_table "plane_manufacturers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "airbus_320"
+    t.float "airbus_330"
+    t.float "airbus_350"
+    t.float "airbus_380"
+    t.float "boeing_737"
+    t.float "boeing_747"
+    t.float "boeing_777"
+    t.float "boeing_787"
+  end
+
+  create_table "plane_model_families", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "plane_manufacturer_id"
+    t.index ["plane_manufacturer_id"], name: "index_plane_model_families_on_plane_manufacturer_id"
   end
 
   create_table "plane_models", force: :cascade do |t|
@@ -139,10 +205,11 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "size"
-    t.string "code"
-    t.integer "plane_manufacturer_id"
     t.integer "counter"
+    t.integer "plane_model_family_id"
+    t.integer "plane_manufacturer_id"
     t.index ["plane_manufacturer_id"], name: "index_plane_models_on_plane_manufacturer_id"
+    t.index ["plane_model_family_id"], name: "index_plane_models_on_plane_model_family_id"
   end
 
   create_table "planes", force: :cascade do |t|
@@ -189,7 +256,6 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
   end
 
   create_table "seat_configurations", force: :cascade do |t|
-    t.string "name"
     t.integer "first_class"
     t.integer "business_class"
     t.integer "economy_class"
@@ -197,7 +263,6 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "plane_model_id"
-    t.integer "cost"
     t.index ["plane_model_id"], name: "index_seat_configurations_on_plane_model_id"
   end
 
@@ -210,7 +275,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_100245) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.integer "user_id"
-    t.integer "runtime"
+    t.integer "runtime", default: 0
     t.integer "location"
     t.index ["hub_id"], name: "index_staffs_on_hub_id"
     t.index ["plane_id"], name: "index_staffs_on_plane_id"

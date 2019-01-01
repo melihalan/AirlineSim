@@ -1,6 +1,23 @@
 class PlaneModelsController < ApplicationController
   before_action :set_plane_model, only: [:show, :edit, :update, :destroy]
 
+  def filter
+    @list = PlaneModel.where(plane_model_family_id: params[:plane_model_family_id])
+    respond_to do |format|
+      format.html {redirect_to @list}
+      format.js
+    end
+  end
+
+  def detail
+    @plane_model = PlaneModel.find(params[:plane_model_id])
+    @seat_configurations = SeatConfiguration.where(plane_model_id: params[:plane_model_id])
+    respond_to do |format|
+      format.html {redirect_to @plane_model}
+      format.js
+    end
+  end
+
   # GET /plane_models
   # GET /plane_models.json
   def index

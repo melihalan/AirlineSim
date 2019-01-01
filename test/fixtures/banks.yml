@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  tier: 1
+  interest_rate_loan: 1.5
+  max_limit_loan: 1
+  payback_time: 1
+  interest_rate_loc: 1.5
+  max_limit_loc: 1
+
+two:
+  name: MyString
+  tier: 1
+  interest_rate_loan: 1.5
+  max_limit_loan: 1
+  payback_time: 1
+  interest_rate_loc: 1.5
+  max_limit_loc: 1

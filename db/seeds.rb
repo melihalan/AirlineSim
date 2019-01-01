@@ -29,55 +29,70 @@ CSV.foreach(Rails.root.join('lib/seeds/Cities.csv'), headers: true) do |row|
     longtitude: row[3],
     population: row[4],
     slots: row[5],
-    ground_operations: row[6],
+    available_slots: row[6],
     landing_cost: row[7],
     boarding_cost: row[8],
-    space_rent: row[9]
+    space_rent: row[9],
+    hub_opening_cost: row[10],
+    accomadation_cost: row[11]
   )
 end
 
 puts "Territories, Countries and Cities have been loaded."
 
-PlaneModel.create!(
-  name: "Boeing 737",
-  range: 4500,
-  avg_speed: 750,
-  max_pas: 180,
-  fuel_use: 50,
-  cost: 47000000,
-  maintanence: 150000,
-  pilots: 2,
-  hosts: 3,
-  size: 1
-)
+CSV.foreach(Rails.root.join('lib/seeds/PlaneManufacturers.csv'), headers: true) do |row|
+  PlaneManufacturer.create!(
+    name: row[0],
+    airbus_320: row[1],
+    airbus_330: row[2],
+    airbus_350: row[3],
+    airbus_380: row[4],
+    boeing_737: row[5],
+    boeing_747: row[6],
+    boeing_777: row[7],
+    boeing_787: row[8]
+  )
+end
 
-PlaneModel.create!(
-  name: "Airbus A321",
-  range: 4000,
-  avg_speed: 800,
-  max_pas: 160,
-  fuel_use: 50,
-  cost: 40000000,
-  maintanence: 100000,
-  pilots: 2,
-  hosts: 3,
-  size: 1
-)
+CSV.foreach(Rails.root.join('lib/seeds/PlaneModelFamilies.csv'), headers: true) do |row|
+  PlaneModelFamily.create!(
+    id: row[0],
+    plane_manufacturer_id: row[1],
+    name: row[2]
+  )
+end
 
-PlaneModel.create!(
-  name: "Boeing 777",
-  range: 6000,
-  avg_speed: 800,
-  max_pas: 450,
-  fuel_use: 100,
-  cost: 92000000,
-  maintanence: 200000,
-  pilots: 2,
-  hosts: 6,
-  size: 2
-)
+CSV.foreach(Rails.root.join('lib/seeds/PlaneModels.csv'), headers: true) do |row|
+  PlaneModel.create!(
+    id: row[0],
+    plane_manufacturer_id: row[1],
+    plane_model_family_id: row[2],
+    name: row[3],
+    range: row[4],
+    max_pas: row[5],
+    avg_speed: row[6],
+    fuel_use: row[7],
+    cost: row[8],
+    maintanence: row[9],
+    pilots: row[10],
+    hosts: row[11],
+    size: row[12],
+    counter: row[13]
+  )
+end
 
-puts "3 Plane Models have been created."
+CSV.foreach(Rails.root.join('lib/seeds/SeatConfigurations.csv'), headers: true) do |row|
+  SeatConfiguration.create!(
+    id: row[0],
+    plane_model_id: row[1],
+    economy_class: row[2],
+    business_class: row[3],
+    first_class: row[4],
+    passenger: row[5]
+  )
+end
+
+puts "Plane Manufacturers, Plane Model Families, Plane Models and Seat Configurations have been loaded."
 
 Staff.create!(
   hub_id: nil,

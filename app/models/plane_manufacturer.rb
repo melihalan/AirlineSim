@@ -1,3 +1,3 @@
 class PlaneManufacturer < ApplicationRecord
-  has_many :plane_models
+  has_many :plane_model_family
 end

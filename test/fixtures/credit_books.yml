@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bank: one
+  user: one
+  product: MyString
+  balance: 1
+  payback_term: 1
+  interest: 1
+  turn: 2019-01-01 18:39:45
+
+two:
+  bank: two
+  user: two
+  product: MyString
+  balance: 1
+  payback_term: 1
+  interest: 1
+  turn: 2019-01-01 18:39:45

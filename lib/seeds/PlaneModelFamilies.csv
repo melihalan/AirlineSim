@@ -1,0 +1,9 @@
+id,plane_manufacturer_id,name
+1,1,Airbus 320
+2,1,Airbus 330
+3,1,Airbus 350
+4,1,Airbus 380
+5,2,Boeing 737
+6,2,Boeing 747
+7,2,Boeing 777
+8,2,Boeing 787

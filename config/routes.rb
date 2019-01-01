@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   resources :planes
   resources :xroutes
   resources :hubs
-  resources :plane_models
+
+  resources :plane_models do
+    get :filter, on: :collection
+    get :detail, on: :collection    
+  end
 
   resources :countries do
     get :filter, on: :collection
@@ -16,6 +20,10 @@ Rails.application.routes.draw do
   resources :cities do
     get :filter, on: :collection
     get :detail, on: :collection
+  end
+
+  resources :plane_model_families do
+    get :filter, on: :collection
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

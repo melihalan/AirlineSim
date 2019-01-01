@@ -1,0 +1,36 @@
+<div class="details">
+  <h1><%= @plane_model.name %></h1>
+  <ol>
+    Size: <%= if @plane_model.size == 1 then "Narrow Body" else "Wide Body" end  %><br>
+    Range: <%= @plane_model.range %><br>
+    Cruising Speed: <%= @plane_model.avg_speed %><br>
+    Fuel Consumption: <%= "#{@plane_model.fuel_use} liters / km"  %><br>
+    Maintanence Cost <%= "#{@plane_model.maintanence} / 3 months" %><br>
+    Maximum Passenger (1 Class): <%= @plane_model.max_pas %><br>
+  </ol>
+  <h4>Staff Requirement</h4>
+  <ol>
+    Pilots: <%= @plane_model.pilots %><br>
+    Flight Attendants: <%= @plane_model.hosts %><br>
+  </ol>
+  <h4>Listing Price : <%= @plane_model.cost %></h4>
+  <table class="seat_configuration">
+    <tr>
+      <th>Seat Configurations</th>
+      <th>Economy Class</th>
+      <th>Business Class</th>
+      <th>First Class</th>
+      <th>Total Capacity</th>
+    </tr>
+    <% @seat_configurations.each do |sc| %>
+    <tr>
+      <td><%= "E#{sc.economy_class}/B#{sc.business_class}/F#{sc.first_class}"%></td>
+      <td><%= sc.economy_class %></td>
+      <td><%= sc.business_class %></td>
+      <td><%= sc.first_class %></td>
+      <td><%= sc.passenger %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+<p><%= link_to "Back to Plane Model Selection", filter_plane_models_path(plane_model_family_id: PlaneModelFamily.find(@plane_model.plane_model_family_id)), remote:true %></p>

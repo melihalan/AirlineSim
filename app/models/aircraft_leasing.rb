@@ -1,0 +1,2 @@
+class AircraftLeasing < ApplicationRecord
+end
