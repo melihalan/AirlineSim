@@ -1,0 +1,4 @@
+$('#city-detail-section').empty()
+$('#city-section').empty()
+$('#city-detail-section').append("<%= j render partial: 'cities/show' %>");
+$('#city-detail-section').attr("city_id", "<%= @city.id %>")

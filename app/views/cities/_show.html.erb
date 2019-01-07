@@ -19,4 +19,4 @@
     Accomodation Cost / Staff / Night: <%= @city.accomadation_cost %><br>
   </ol>
 </div>
-<p><%= link_to "Back to City Selection", filter_cities_path(country_id: Country.find(@city.country_id)), remote:true %></p>
+<p><%= link_to "Back to City Selection", cities_path(country_id: Country.find(@city.country_id)), remote:true %></p>

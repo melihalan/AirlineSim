@@ -1,38 +1,14 @@
-<p>
-  <strong>Name:</strong>
-  <%= @city.name %>
-</p>
+<section id= "territory-section">
+</section>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @city.latitude %>
-</p>
+<section id= "country-section">
+</section>
 
-<p>
-  <strong>Longtitude:</strong>
-  <%= @city.longtitude %>
-</p>
+<section id= "city-section">
+</section>
 
-<p>
-  <strong>Population:</strong>
-  <%= @city.population %>
-</p>
+<section id= "city-detail-section">
+  <%= render 'show', city: @city %>
+</section>
 
-<p>
-  <strong>Longtitude:</strong>
-  <%= @city.country %>
-</p>
-
-<p>
-  <strong>Longtitude:</strong>
-  <%= @city.territory %>
-</p>
-
-<p>
-  <strong>Longtitude:</strong>
-  <%= @city.slots %>
-</p>
-
-
-<%= link_to 'Edit', edit_city_path(@city) %> |
 <%= link_to 'Back', cities_path %>

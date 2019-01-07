@@ -1,31 +1,33 @@
 class CitiesController < ApplicationController
-  before_action :set_city, only: [:show, :edit, :update, :destroy]
+  before_action :set_city, only: [:edit, :update, :destroy]
 
   def filter
-    @list = City.where(country_id: params[:country_id])
-    respond_to do |format|
-      format.html { redirect_to @list}
-      format.js
-    end
+
   end
 
   def detail
-    @city = City.find(params[:city_id])
-    respond_to do |format|
-      format.html { redirect_to @city}
-      format.js
-    end
+
   end
 
   # GET /cities
   # GET /cities.json
   def index
     @cities = City.all
+    @list = City.where(country_id: params[:country_id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /cities/1
   # GET /cities/1.json
   def show
+    @city = City.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /cities/new

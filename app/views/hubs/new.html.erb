@@ -1,7 +1,7 @@
 <h1>Create a new Hub</h1>
 
 <section id= "territory-section">
-  <%= render partial: 'territories/list' %>
+  <%= render partial: 'territories/index' %>
 </section>
 
 <section id= "country-section">
@@ -10,4 +10,8 @@
 <section id= "city-section">
 </section>
 
+<section id= "city-detail-section">
+</section>
+
+<%= link_to 'Select' , hubs_path, method: :post, remote: true %>
 <%= link_to 'Back', hubs_path %>

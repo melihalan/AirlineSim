@@ -1,7 +1,7 @@
 <h2>Countries</h2>
 <ol class="country">
   <% @list.each do |country| %>
-    <%= link_to country.name, filter_cities_path(country_id: country.id), remote:true %>
+    <%= link_to country.name, cities_path(country_id: country.id), remote:true %>
   <% end %>
 </ol>
 <p><%= link_to "Back to Territory Selection", cities_path %></p>
