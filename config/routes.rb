@@ -7,10 +7,11 @@ Rails.application.routes.draw do
   resources :planes
   resources :xroutes
   resources :hubs
+  resources :territories
 
   resources :plane_models do
     get :filter, on: :collection
-    get :detail, on: :collection    
+    get :detail, on: :collection
   end
 
   resources :countries do

@@ -1,4 +1,6 @@
+$('#back-to-cities-section').empty()
 $('#city-detail-section').empty()
 $('#city-section').empty()
 $('#city-detail-section').append("<%= j render partial: 'cities/show' %>");
 $('#city-detail-section').attr("city_id", "<%= @city.id %>")
+$('#back-to-cities-section').append("<%= j render partial: 'cities/backlink' %>")

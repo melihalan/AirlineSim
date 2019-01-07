@@ -4,4 +4,4 @@
     <%= link_to country.name, cities_path(country_id: country.id), remote:true %>
   <% end %>
 </ol>
-<p><%= link_to "Back to Territory Selection", cities_path %></p>
+<p><%= link_to "Back to Territory Selection", territories_path, remote: true %></p>
