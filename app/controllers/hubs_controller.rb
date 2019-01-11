@@ -1,6 +1,14 @@
 class HubsController < ApplicationController
   before_action :set_hub, only: [:show, :edit, :update, :destroy]
 
+  def hubexist
+    @user_id = current_user.id
+    @city_id = params[:city_id].to_i
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /hubs
   # GET /hubs.json
   def index
@@ -25,13 +33,15 @@ class HubsController < ApplicationController
   # POST /hubs.json
   def create
     @hub = Hub.new(hub_params)
+    @hub.user_id = current_user.id
     respond_to do |format|
       if @hub.save
         format.html { redirect_to @hub, notice: 'Hub was successfully created.' }
         format.json { render :show, status: :created, location: @hub }
       else
-        format.html { render :new }
-        format.json { render json: @hub.errors, status: :unprocessable_entity }
+        #format.html { render :new }
+        #format.json { render json: @hub.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -68,6 +78,6 @@ class HubsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hub_params
-      params.permit(:city_id, :opening_cost, :rental_cost, :office_cost, :user_id)
+      params.permit(:city_id, :opening_cost, :rental_cost, :office_cost, :user_id, :slots)
     end
 end

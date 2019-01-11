@@ -1,5 +1,8 @@
 <h1>Create a new Hub</h1>
 
+<section id= "errors-section">
+</section>
+
 <section id= "territory-section">
   <%= render partial: 'territories/index' %>
 </section>
@@ -16,6 +19,6 @@
 <section id="back-to-cities-section">
 </section>
 
-<button type="button" name="button" id="select-hub">Select Hub</button>
+<button style="display:none" type="button" name="button" id="select-hub">Select Hub</button>
 
 <%= link_to 'Back', hubs_path %>

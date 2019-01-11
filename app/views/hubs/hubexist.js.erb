@@ -1,0 +1,8 @@
+<% City.find(@city_id).hubs.each do |h| %>
+  <% if h.user_id =! @user_id %>
+
+  <% else %>
+    $('#errors-section').append("<p>Hub already exist!</p>");
+    $('#select-hub').css("display", "block");
+  <% end %>
+<% end %>

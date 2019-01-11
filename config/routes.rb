@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :schedules
   resources :planes
   resources :xroutes
-  resources :hubs
+  resources :hubs do
+    get :hubexist, on: :collection
+  end
   resources :territories
 
   resources :plane_models do

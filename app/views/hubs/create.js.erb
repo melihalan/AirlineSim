@@ -1,0 +1,4 @@
+$('#errors-section').empty()
+<% if @hub.errors %>
+  $('#errors-section').append("<%= @hub.errors.full_messages() %>")
+<% end %>
