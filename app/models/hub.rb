@@ -7,27 +7,9 @@ class Hub < ApplicationRecord
   validates :user_id, presence: true
   validates :city_id, presence: true
   validates :slots, presence: true
-  #validate :prechecks
 
   #after_create :calculate, on: :create
-
-  def prechecks
-    @city_id = self.city_id
-    @user_id = self.user_id
-    @slots = self.slots
-    City.find(@city_id).hubs.each do |h|
-      if h.user_id == @user_id
-        errors.add(:user, "Already exists!")
-      end
-    end
-    #if City.find(@city_id).available_slots < @slots
-      #errors.add(:slots, "This city doesn't have enough available slots!")
-    #end
-    #if User.find(@user_id).balance < self.hub_opening_cost
-      #errors.add(:slots, "This city doesn't have enough available slots!")
-    #end
-  end
-
+  
   def postcreate
     #defines population of the hub
     @population = self.city.population

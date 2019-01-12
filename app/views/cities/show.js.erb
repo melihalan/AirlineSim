@@ -3,4 +3,5 @@ $('#city-detail-section').empty()
 $('#city-section').empty()
 $('#city-detail-section').append("<%= j render partial: 'cities/show' %>");
 $('#city-detail-section').attr("city_id", "<%= @city.id %>")
+$('#city-detail-section').attr("available_slots", "<%= @city.available_slots %>")
 $('#back-to-cities-section').append("<%= j render partial: 'cities/backlink' %>")

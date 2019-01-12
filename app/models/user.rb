@@ -7,4 +7,10 @@ class User < ApplicationRecord
   has_many :plane
   has_many :staff
   has_one :book
+
+  after_create :post_create, on: :create
+
+  def post_create
+    Book.create(user_id: self.id, balance: 10000000)
+  end
 end

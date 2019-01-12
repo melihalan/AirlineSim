@@ -1,0 +1,41 @@
+<% if City.find(@city_id).hubs.empty? %>
+  <% @city_hub_check=true %>
+<% else %>
+  <% @city_hub_check=false %>
+<% end %>
+
+<% if @city_hub_check == false %>
+  <% City.find(@city_id).hubs.each do |h| %>
+    <% if h.user_id == @user_id %>
+      <% @user_hub_check=false %>
+    <% else %>
+      <% @user_hub_check=true %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if City.find(@city_id).available_slots < 25 %>
+  <% @city_slot_check=false %>
+<% else %>
+  <% @city_slot_check=true %>
+<% end %>
+
+<% if Book.find_by(user_id:@user_id).balance < City.find(@city_id).hub_opening_cost %>
+  <% @user_balance_check=false %>
+<% else %>
+  <% @user_balance_check=true %>
+<% end %>
+
+<% if (@city_hub_check || @user_hub_check) && @city_slot_check && @user_balance_check %>
+  $('#select-hub').css("display", "block");
+<% else %>
+  <% if (@city_hub_check || @user_hub_check) == false %>
+    $('#errors-section').append("<p>Hub already exist!</p>");
+  <% end %>
+  <% if @city_slot_check == false %>
+    $('#errors-section').append("<p>This city has not available slots for a new airline to operate!</p>");
+  <% end %>
+  <% if @user_balance_check == false %>
+      $('#errors-section').append("<p>You don't have enough funds to open a new hub in this city!</p>");
+  <% end %>
+<% end %>

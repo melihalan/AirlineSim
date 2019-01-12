@@ -1,7 +1,7 @@
 class HubsController < ApplicationController
   before_action :set_hub, only: [:show, :edit, :update, :destroy]
 
-  def hubexist
+  def prechecks
     @user_id = current_user.id
     @city_id = params[:city_id].to_i
     respond_to do |format|

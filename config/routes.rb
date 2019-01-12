@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :planes
   resources :xroutes
   resources :hubs do
-    get :hubexist, on: :collection
+    get :prechecks, on: :collection
   end
+  resources :books
   resources :territories
 
   resources :plane_models do
