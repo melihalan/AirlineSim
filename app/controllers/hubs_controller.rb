@@ -34,6 +34,7 @@ class HubsController < ApplicationController
   def create
     @hub = Hub.new(hub_params)
     @hub.user_id = current_user.id
+    @hub.slots = 25
     respond_to do |format|
       if @hub.save
         format.html { redirect_to @hub, notice: 'Hub was successfully created.' }

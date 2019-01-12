@@ -1,13 +1,13 @@
 class Hub < ApplicationRecord
 
   belongs_to :city
-  belongs_to :user, optional:true
+  belongs_to :user
   has_many :xroute
   has_many :staffs
   validates :user_id, presence: true
   validates :city_id, presence: true
   validates :slots, presence: true
-  validate :prechecks
+  #validate :prechecks
 
   #after_create :calculate, on: :create
 
@@ -20,9 +20,9 @@ class Hub < ApplicationRecord
         errors.add(:user, "Already exists!")
       end
     end
-    if City.find(@city_id).available_slots < @slots
-      errors.add(:slots, "This city doesn't have enough available slots!")
-    end
+    #if City.find(@city_id).available_slots < @slots
+      #errors.add(:slots, "This city doesn't have enough available slots!")
+    #end
     #if User.find(@user_id).balance < self.hub_opening_cost
       #errors.add(:slots, "This city doesn't have enough available slots!")
     #end

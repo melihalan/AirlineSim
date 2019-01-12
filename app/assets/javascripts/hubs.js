@@ -7,4 +7,12 @@ $(document).ajaxComplete(function(){
       global: false,
     });
   }
+  $('#select-hub').click(function(){
+    $.ajax({
+      url: "/hubs",
+      method: "POST",
+      data: { city_id: $city_id },
+      global: false,
+    });
+  })
 });
