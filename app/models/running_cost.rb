@@ -1,4 +1,4 @@
 class RunningCost < ApplicationRecord
-  belongs_to :book
-  belongs_to :turn
+  belongs_to :book, optional:true
+  belongs_to :turn, optional:true
 end

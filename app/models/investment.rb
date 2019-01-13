@@ -1,10 +1,10 @@
 class Investment < ApplicationRecord
-  belongs_to :book
-  belongs_to :turn
+  belongs_to :book, optional:true
+  belongs_to :turn, optional:true
 
-  after_create :deduct_balance, on: :create
+  #after_create :deduct_balance, on: :create
 
   def deduct_balance
-    self.book.money -= self.value
+    self.book.balance -= self.value
   end
 end

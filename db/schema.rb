@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_01_181358) do
+ActiveRecord::Schema.define(version: 2019_01_13_132534) do
 
   create_table "aircraft_leasings", force: :cascade do |t|
     t.string "name"
@@ -42,6 +42,18 @@ ActiveRecord::Schema.define(version: 2019_01_01_181358) do
     t.string "description"
     t.index ["book_id"], name: "index_asset_sales_on_book_id"
     t.index ["turn_id"], name: "index_asset_sales_on_turn_id"
+  end
+
+  create_table "assets", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "turn_id"
+    t.string "category"
+    t.integer "value"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_assets_on_book_id"
+    t.index ["turn_id"], name: "index_assets_on_turn_id"
   end
 
   create_table "banks", force: :cascade do |t|
@@ -155,6 +167,18 @@ ActiveRecord::Schema.define(version: 2019_01_01_181358) do
     t.index ["turn_id"], name: "index_investments_on_turn_id"
   end
 
+  create_table "liabilities", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "turn_id"
+    t.string "category"
+    t.integer "value"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_liabilities_on_book_id"
+    t.index ["turn_id"], name: "index_liabilities_on_turn_id"
+  end
+
   create_table "order_books", force: :cascade do |t|
     t.integer "aircraft_leasing_id"
     t.integer "user_id"
@@ -264,6 +288,24 @@ ActiveRecord::Schema.define(version: 2019_01_01_181358) do
     t.datetime "updated_at", null: false
     t.integer "plane_model_id"
     t.index ["plane_model_id"], name: "index_seat_configurations_on_plane_model_id"
+  end
+
+  create_table "slots_allocations", force: :cascade do |t|
+    t.integer "city_id"
+    t.integer "user_id"
+    t.integer "slots"
+    t.integer "used_slots"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_slots_allocations_on_city_id"
+    t.index ["user_id"], name: "index_slots_allocations_on_user_id"
+  end
+
+  create_table "staff_names", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "staffs", force: :cascade do |t|

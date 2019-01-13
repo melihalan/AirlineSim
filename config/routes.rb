@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     get :prechecks, on: :collection
   end
   resources :books
+  resources :investments
+  resources :running_costs
+  resources :slots_allocations
   resources :territories
 
   resources :plane_models do

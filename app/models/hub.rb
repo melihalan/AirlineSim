@@ -8,8 +8,8 @@ class Hub < ApplicationRecord
   validates :city_id, presence: true
   validates :slots, presence: true
 
-  #after_create :calculate, on: :create
-  
+  after_create :postcreate, on: :create
+
   def postcreate
     #defines population of the hub
     @population = self.city.population
@@ -18,16 +18,16 @@ class Hub < ApplicationRecord
     #updates rental_cost & office_cost & slots of the hub
     self.update(rental_cost: @population/2000*@slots, office_cost: self.staffs.count*2000)
     #creates a new investment
-    Investment.new(book_id: self.user.book, turn_id: Turn.current_term_id, category: "New Hub Creation", value: self.hub_opening_cost, description: "Created a hub in #{self.city.name}")
-    #deduct hub_opening_cost from user.balance
-    User.find(self.user_id).deduct_balance(self.hub_opening_cost)
+    Investment.create(book_id: self.user.book.id, turn_id: Turn.last.id, category: "New Hub Creation", value: self.city.hub_opening_cost, description: "Created a hub in #{self.city.name}")
+    # Deduct hub_opening_cost from book.balance
+    self.user.book.update(balance: self.user.book.balance - self.city.hub_opening_cost)
     #creates new running costs for rental_cost & office_cost
-    RunningCost.new(book_id: self.user.book, category: "Hub Rental Cost", value: self.rental_cost, description: "#{self.city.name}" )
-    RunningCost.new(book_id: self.user.book, category: "Hub Office Cost", value: self.office_cost, description: "#{self.city.name}" )
+    RunningCost.create(book_id: self.user.book.id, turn_id: Turn.last.id, category: "Hub Rental Cost", value: self.rental_cost, description: "#{self.city.name}" )
+    RunningCost.create(book_id: self.user.book.id, turn_id: Turn.last.id, category: "Hub Office Cost", value: self.office_cost, description: "#{self.city.name}" )
     #allocates slots to user
-    SlotsAllocation.new(city_id: self.city, user_id: self.user, slots: self.slots)
+    SlotsAllocation.create(user_id: self.user.id, city_id: self.city.id, slots: self.slots, used_slots: 0)
     #updates available_slots in the city
-    City.find(self.city).slot_update
+    self.city.update(available_slots: self.city.available_slots - @slots)
   end
 
   def postupdate
@@ -40,7 +40,13 @@ class Hub < ApplicationRecord
     #updates slot allocation to user
     SlotsAllocation.find_by(city_id: self.city, user_id: self.user).update(slots: self.slots)
     #updates available_slots in the city
-    City.find(self.city).slot_update
+    self.city.update(available_slots: self.city.available_slots - @slots)
+  end
+
+  def postdestroy
+    RunningCost.find_by(category: "Hub Rental Cost", description: "#{self.city.name}").destroy
+    RunningCost.find_by(category: "Hub Office Cost", description: "#{self.city.name}").destroy
+    SlotsAllocation.find_by(city_id: self.city, user_id: self.user).destroy
   end
 
   def name

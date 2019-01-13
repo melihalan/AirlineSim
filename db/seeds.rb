@@ -94,76 +94,17 @@ end
 
 puts "Plane Manufacturers, Plane Model Families, Plane Models and Seat Configurations have been loaded."
 
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "Roger Davis",
-  job: "Pilot",
-  salary: 16000
+CSV.foreach(Rails.root.join('lib/seeds/StaffNames.csv'), headers: true) do |row|
+  StaffName.create!(
+    name: row[0],
+    surname: row[1]
+  )
+end
+
+puts "Names and Surnames have been loaded."
+
+Turn.create!(
+  term: DateTime.civil(2019,1)
 )
 
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "Alonzo Fratuew",
-  job: "Pilot",
-  salary: 16000
-)
-
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "Rose Grund",
-  job: "Pilot",
-  salary: 16000
-)
-
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "Mary James",
-  job: "Host",
-  salary: 6000
-)
-
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "John Alfor",
-  job: "Host",
-  salary: 6000
-)
-
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "Lora Finas",
-  job: "Host",
-  salary: 6000
-)
-
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "George Pilotovski",
-  job: "Officer",
-  salary: 4500
-)
-
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "Ana Pilotovski",
-  job: "Officer",
-  salary: 4500
-)
-
-Staff.create!(
-  hub_id: nil,
-  plane_id: nil,
-  name: "Sarah Jonas",
-  job: "Officer",
-  salary: 4500
-)
-
-puts "9 staffs have been created."
+puts "The game will start at January 2019."

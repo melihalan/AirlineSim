@@ -50,6 +50,7 @@ class HubsController < ApplicationController
   # PATCH/PUT /hubs/1
   # PATCH/PUT /hubs/1.json
   def update
+    @hub.postupdate
     respond_to do |format|
       if @hub.update(hub_params)
         format.html { redirect_to @hub, notice: 'Hub was successfully updated.' }
@@ -64,6 +65,7 @@ class HubsController < ApplicationController
   # DELETE /hubs/1
   # DELETE /hubs/1.json
   def destroy
+    @hub.postdestroy
     @hub.destroy
     respond_to do |format|
       format.html { redirect_to hubs_url, notice: 'Hub was successfully destroyed.' }
