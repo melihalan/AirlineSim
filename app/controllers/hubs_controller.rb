@@ -1,7 +1,16 @@
 class HubsController < ApplicationController
   before_action :set_hub, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def prechecks
+    @user_id = current_user.id
+    @city_id = params[:city_id].to_i
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def updatechecks
     @user_id = current_user.id
     @city_id = params[:city_id].to_i
     respond_to do |format|
@@ -35,6 +44,8 @@ class HubsController < ApplicationController
     @hub = Hub.new(hub_params)
     @hub.user_id = current_user.id
     @hub.slots = 25
+    @hub.rental_cost = @hub.population/2000*@hub.slots
+    @hub.office_cost = @hub.staffs.count*4000
     respond_to do |format|
       if @hub.save
         format.html { redirect_to @hub, notice: 'Hub was successfully created.' }
@@ -50,9 +61,11 @@ class HubsController < ApplicationController
   # PATCH/PUT /hubs/1
   # PATCH/PUT /hubs/1.json
   def update
-    @hub.postupdate
+    @hub.rental_cost = @hub.population/2000*@hub.slots
+    @hub.office_cost = @hub.staffs.count*4000
     respond_to do |format|
       if @hub.update(hub_params)
+        @hub.postupdate
         format.html { redirect_to @hub, notice: 'Hub was successfully updated.' }
         format.json { render :show, status: :ok, location: @hub }
       else
@@ -81,6 +94,6 @@ class HubsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def hub_params
-      params.permit(:city_id, :opening_cost, :rental_cost, :office_cost, :user_id, :slots)
+      params.permit(:id, :city_id, :opening_cost, :rental_cost, :office_cost, :user_id, :slots)
     end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :xroutes
   resources :hubs do
     get :prechecks, on: :collection
+    get :updatechecks, on: :collection
   end
   resources :books
   resources :investments

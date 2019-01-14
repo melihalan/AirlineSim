@@ -1,6 +1,7 @@
 class City < ApplicationRecord
   belongs_to :country
   has_many :hubs
+  has_many :slots_allocations
 
   def timezone
     @time_zone = Timezone::Zone.new(lat: self.latitude, lon: self.longtitude)
