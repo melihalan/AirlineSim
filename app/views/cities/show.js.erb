@@ -5,12 +5,11 @@ $('#city-detail-section').attr("city_id", "<%= @city.id %>")
 $('#city-detail-section').attr("available_slots", "<%= @city.available_slots %>")
 if ($('meta[name=pjs]').attr('controller') == 'hubs' && $('meta[name=pjs]').attr('action') == 'new'){
   var $city_id = $('#city-detail-section').attr("city_id")
-  $('#errors-section').empty()
-  $('#select-hub').css("display", "none");
   $.ajax({
-    url: "/hubs/prechecks",
+    url: "/hubs/new",
     data: { city_id: $city_id },
     global: false,
+    dataType: "script",
   });
   $('#select-hub-button').attr("data-params", "city_id="+$city_id+"");
 }

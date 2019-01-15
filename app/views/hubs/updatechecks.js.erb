@@ -1,9 +1,0 @@
-<% if City.find(@city_id).available_slots < 25 %>
-  $('#update-errors-section').append("<p>This city has not available slots for new flights!</p>")
-  $('#update-hub-button').css("display", "none")
-<% end %>
-
-<% if (SlotsAllocation.find_by(user_id: @user_id, city_id: @city_id).used_slots / SlotsAllocation.find_by(user_id: @user_id, city_id: @city_id).slots) < 0.8 %>
-  $('#update-errors-section').append("<p>You have to utilize at least %80 of reserved slots to demand more slots.</p>")
-  $('#update-hub-button').css("display", "none")
-<% end %>

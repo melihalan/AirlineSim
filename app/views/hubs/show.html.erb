@@ -1,32 +1,5 @@
-<section id= "city-detail-section" city_id= "<%= @hub.city.id %>">
-  <p>
-    <strong>City:</strong>
-    <%= @hub.city.name %>
-  </p>
-
-  <p>
-    <strong>Rental cost:</strong>
-    <%= @hub.rental_cost %>
-  </p>
-
-  <p>
-    <strong>Slots:</strong>
-    <%= @hub.slots %>
-  </p>
-
-  <p>
-    <strong>Office cost:</strong>
-    <%= @hub.office_cost %>
-  </p>
+<section id= "hub-detail-section">
+  <%= render 'show', hub: @hub %>
 </section>
 
-
-<section id="update-hub" >
-  <button id="update-hub-button" type="button" name="button" data-remote="true" data-url="/hubs/<%= @hub.id %>" data-params="slots=<%= @hub.slots + 25 %>" data-method="put">Add 25 more slots</button>
-</section>
-
-<section id="update-errors-section">
-</section>
-
-<%= link_to 'Edit', edit_hub_path(@hub) %> |
 <%= link_to 'Back', hubs_path %>

@@ -6,10 +6,7 @@ Rails.application.routes.draw do
   resources :schedules
   resources :planes
   resources :xroutes
-  resources :hubs do
-    get :prechecks, on: :collection
-    get :updatechecks, on: :collection
-  end
+  resources :hubs
   resources :books
   resources :investments
   resources :running_costs

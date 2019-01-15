@@ -1,0 +1,10 @@
+<% if ((SlotsAllocation.find_by(user_id: @user_id, city_id: @city_id).used_slots / SlotsAllocation.find_by(user_id: @user_id, city_id: @city_id).slots) >= 0.8) && City.find(@city_id).available_slots >= 25 %>
+  $('#update-hub').css("display", "block");
+<% else %>
+  <% if (SlotsAllocation.find_by(user_id: @user_id, city_id: @city_id).used_slots / SlotsAllocation.find_by(user_id: @user_id, city_id: @city_id).slots) < 0.8 %>
+    $('#errors-section').append("<p>You have to utilize at least %80 of reserved slots to demand more slots.</p>");
+  <% end %>
+  <% if City.find(@city_id).available_slots < 25 %>
+    $('#errors-section').append("<p>This city has not available slots for new flights!</p>");
+  <% end %>
+<% end %>

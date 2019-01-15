@@ -1,0 +1,16 @@
+var $city_id = <%= @hub.city.id %>
+var $hub_id = <%= @hub.id %>
+var $update_slots = <%= @hub.slots + 25 %>
+$('#errors-section').empty();
+$('#hub-detail-section').empty();
+$('#hub-detail-section').append("<%= j render partial: 'hubs/show' %>");
+$('#update-hub-button').attr("data-url", "/hubs/"+$hub_id+"");
+$('#update-hub-button').attr("data-params", "slots="+$update_slots+"");
+$('#destroy-hub').css("display", "block");
+$('#destroy-hub-button').attr("data-url", "/hubs/"+$hub_id+"");
+$.ajax({
+  url: "/hubs/"+$hub_id+"/edit",
+  data: { city_id: $city_id },
+  global: false,
+  dataType: "script",
+});

@@ -2,22 +2,6 @@ class HubsController < ApplicationController
   before_action :set_hub, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  def prechecks
-    @user_id = current_user.id
-    @city_id = params[:city_id].to_i
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def updatechecks
-    @user_id = current_user.id
-    @city_id = params[:city_id].to_i
-    respond_to do |format|
-      format.js
-    end
-  end
-
   # GET /hubs
   # GET /hubs.json
   def index
@@ -27,15 +11,30 @@ class HubsController < ApplicationController
   # GET /hubs/1
   # GET /hubs/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /hubs/new
   def new
     @hub = Hub.new
+    @user_id = current_user.id
+    @city_id = params[:city_id].to_i
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /hubs/1/edit
   def edit
+    @user_id = current_user.id
+    @city_id = params[:city_id].to_i
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /hubs
