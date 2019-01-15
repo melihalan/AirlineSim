@@ -1,6 +1,6 @@
 <h2>Territories</h2>
 <ol class="territory">
   <% Territory.all.each do |t| %>
-    <%= link_to t.name, countries_path(territory_id: t.id), remote: true %>
+    <button type="button" id="select-territory-button" data-remote="true" data-url="/countries" data-params="territory_id=<%=t.id%>"><%=t.name%></button>
   <% end %>
 </ol>
