@@ -1,7 +1,0 @@
-<h2>Plane Models</h2>
-<ol class="plane_model">
-  <% @list.each do |plane_model| %>
-    <%= link_to plane_model.name, detail_plane_models_path(plane_model_id: plane_model.id), remote:true %>
-  <% end %>
-</ol>
-<p><%= link_to "Back to Model Family Selection", filter_plane_model_families_path(plane_manufacturer_id: PlaneManufacturer.find(PlaneModelFamily.find(@list.first.plane_model_family_id).plane_manufacturer_id)), remote:true %></p>

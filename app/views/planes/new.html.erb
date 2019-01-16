@@ -1,5 +1,24 @@
 <h1>New Plane</h1>
 
-<%= render 'form', plane: @plane %>
+<section id= "errors-section">
+</section>
+
+<section id= "pla_man-section">
+  <%= render partial: 'plane_manufacturers/index' %>
+</section>
+
+<section id= "pla_mod_fam-section">
+</section>
+
+<section id= "pla_mod-section">
+</section>
+
+<section id= "pla_mod-detail-section">
+</section>
+
+<section id="select-plane">
+  <button id="buy-plane-button" style="display:none" type="button" data-remote="true" data-url="/planes" data-method="post">Buy Plane</button>
+  <button id="lease-plane-button" style="display:none" type="button" data-remote="true" data-url="/planes" data-method="post">Lease Plane</button>
+</section>
 
 <%= link_to 'Back', planes_path %>

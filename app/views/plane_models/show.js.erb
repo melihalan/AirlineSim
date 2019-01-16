@@ -1,0 +1,15 @@
+$('#errors-section').empty()
+$('#pla_mod-detail-section').empty()
+$('#pla_mod-detail-section').append("<%= j render partial: 'plane_models/show' %>");
+$('#pla_mod-detail-section').attr("plane_model_id", "<%= @plane_model.id %>")
+if ($('meta[name=pjs]').attr('controller') == 'planes' && $('meta[name=pjs]').attr('action') == 'new'){
+  var $plane_model_id = $('#pla_mod-detail-section').attr("plane_model_id")
+  $.ajax({
+    url: "/planes/new",
+    data: { plane_model_id: $plane_model_id },
+    global: false,
+    dataType: "script",
+  });
+  $('#buy-plane-button').attr("data-params", "plane_model_id="+$plane_model_id+"");
+  $('#lease-plane-button').attr("data-params", "plane_model_id="+$plane_model_id+"");
+}

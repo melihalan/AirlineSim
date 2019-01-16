@@ -1,7 +1,0 @@
-<h2>Model Families</h2>
-<ol class="model_families">
-  <% @list.each do |pmf| %>
-    <%= link_to pmf.name, filter_plane_models_path(plane_model_family_id: pmf.id), remote:true %>
-  <% end %>
-</ol>
-<p><%= link_to "Back to Manufacturers Selection", plane_models_path %></p>

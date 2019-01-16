@@ -1,0 +1,6 @@
+<h2>Plane Models</h2>
+<ol class="plane_model">
+  <% @list.each do |plane_model| %>
+    <button type="button" id="select-pla_mod-button" data-remote="true" data-url="/plane_models/<%=plane_model.id%>" data-params="plane_model_id=<%=plane_model.id%>"><%=plane_model.name%></button>
+  <% end %>
+</ol>

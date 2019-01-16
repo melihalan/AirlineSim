@@ -1,8 +1,8 @@
 class PlaneModelFamiliesController < ApplicationController
-  def filter
+  def index
     @list = PlaneModelFamily.where(plane_manufacturer_id: params[:plane_manufacturer_id])
     respond_to do |format|
-      format.html {redirect_to @list}
+      format.html
       format.js
     end
   end

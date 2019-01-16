@@ -1,29 +1,24 @@
 <h1>Planes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Plane Model</th>
-      <th>Route</th>
-      <th>Staffs</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
+<ol>
+  <% @planes.each do |plane| %>
+    <button type="button" id="select-plane-button" data-remote="true" data-url="/planes/<%=plane.id%>" data-params="plane_id=<%=plane.id%>"><%=plane.name%></button>
+  <% end %>
+</ol>
 
-  <tbody>
-    <% @planes.each do |plane| %>
-      <tr>
-        <td><%= plane.plane_model.name %></td>
-        <td><%= plane.xroute.name %></td>
-        <<td><%= plane.staff_list %></td>
-        <td><%= link_to 'Show', plane %></td>
-        <td><%= link_to 'Edit', edit_plane_path(plane) %></td>
-        <td><%= link_to 'Destroy', plane, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<section id= "plane-detail-section">
+</section>
 
-<br>
+<section id="update-plane" style="display:none">
+  <button id="update-plane-button" type="button" data-remote="true" data-method="put">Update Seat Configuration</button>
+</section>
+
+<section id="errors-section">
+</section>
+
+<section id="destroy-plane">
+  <button type="button" style="display:none" id="sell-plane-button" data-method="delete" data-remote="true">Sell Plane</button>
+  <button type="button" style="display:none" id="break-lease-button" data-method="delete" data-remote="true">Break Lease</button>
+</section>
 
 <%= link_to 'New Plane', new_plane_path %>

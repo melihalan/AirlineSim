@@ -1,0 +1,6 @@
+<h2>Plane Manufacturers</h2>
+<ol class="plane_manufacturer">
+  <% PlaneManufacturer.all.each do |pm| %>
+    <button type="button" id="select-pla_man-button" data-remote="true" data-url="/plane_model_families" data-params="plane_manufacturer_id=<%=pm.id%>"><%=pm.name%></button>
+  <% end %>
+</ol>

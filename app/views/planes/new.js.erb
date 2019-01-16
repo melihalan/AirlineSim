@@ -1,0 +1,4 @@
+<% if Book.find_by(user_id:@user_id).balance < PlaneModel.find(@plane_model_id).cost %>
+  $('#errors-section').append("<p>You don't have enough funds to buy this plane, consider leasing!</p>");
+<% end %>
+$('#lease-plane-button').css("display", "block")

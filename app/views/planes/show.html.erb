@@ -1,12 +1,5 @@
-<p>
-  <strong>Plane model:</strong>
-  <%= @plane.plane_model.name %>
-</p>
+<section id= "plane-detail-section">
+  <%= render 'show', plane: @plane %>
+</section>
 
-<p>
-  <strong>Xroute:</strong>
-  <%= @plane.xroute.name %>
-</p>
-
-<%= link_to 'Edit', edit_plane_path(@plane) %> |
 <%= link_to 'Back', planes_path %>

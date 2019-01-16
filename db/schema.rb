@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_132534) do
+ActiveRecord::Schema.define(version: 2019_01_16_173311) do
 
   create_table "aircraft_leasings", force: :cascade do |t|
     t.string "name"
@@ -242,8 +242,9 @@ ActiveRecord::Schema.define(version: 2019_01_13_132534) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "location"
-    t.integer "seat_configuration"
+    t.integer "seat_configuration_id"
     t.index ["plane_model_id"], name: "index_planes_on_plane_model_id"
+    t.index ["seat_configuration_id"], name: "index_planes_on_seat_configuration_id"
     t.index ["user_id"], name: "index_planes_on_user_id"
   end
 

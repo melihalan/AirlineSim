@@ -1,0 +1,45 @@
+<p>
+  <strong>Name:</strong>
+  <%= @plane.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @plane.location %>
+</p>
+
+<p>
+  <strong>Seat Configuration:</strong>
+  <br>
+  <table class="seat_configuration">
+    <% @sc = @plane.seat_configuration %>
+    <tr>
+      <th>Economy Class</th>
+      <th>Business Class</th>
+      <th>First Class</th>
+      <th>Total Capacity</th>
+    </tr>
+    <tr>
+      <td><%= "E#{@sc.economy_class}/B#{@sc.business_class}/F#{@sc.first_class}"%></td>
+      <td><%= @sc.economy_class %></td>
+      <td><%= @sc.business_class %></td>
+      <td><%= @sc.first_class %></td>
+      <td><%= @sc.passenger %></td>
+    </tr>
+  </table>
+</p>
+
+<p>
+  <strong>Staff Requirement</strong>
+  <br>
+  <table class="staff_requirement">
+    <tr>
+      <th>Pilots</th>
+      <th>Flight Attendants</th>
+    </tr>
+    <tr>
+      <td><%= @plane.plane_model.pilots %></td>
+      <td><%= @plane.plane_model.hosts %></td>
+    </tr>
+  </table>
+</p>

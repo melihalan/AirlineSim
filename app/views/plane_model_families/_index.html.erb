@@ -1,0 +1,6 @@
+<h2>Model Families</h2>
+<ol class="model_families">
+  <% @list.each do |pmf| %>
+    <button type="button" id="select-pla_mod_fam-button" data-remote="true" data-url="/plane_models" data-params="plane_model_family_id=<%=pmf.id%>"><%=pmf.name%></button>
+  <% end %>
+</ol>

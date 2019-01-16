@@ -1,47 +1,14 @@
-<p>
-  <strong>Name:</strong>
-  <%= @plane_model.name %>
-</p>
+<section id= "pla_man-section">
+</section>
 
-<p>
-  <strong>Range:</strong>
-  <%= @plane_model.range %>
-</p>
+<section id= "pla_mod_fam-section">
+</section>
 
-<p>
-  <strong>Avg speed:</strong>
-  <%= @plane_model.avg_speed %>
-</p>
+<section id= "pla_mod-section">
+</section>
 
-<p>
-  <strong>Max pas:</strong>
-  <%= @plane_model.max_pas %>
-</p>
+<section id= "pla_mod_detail-section">
+  <%= render 'show', plane_model: @plane_model %>
+</section>
 
-<p>
-  <strong>Fuel use:</strong>
-  <%= @plane_model.fuel_use %>
-</p>
-
-<p>
-  <strong>Cost:</strong>
-  <%= @plane_model.cost %>
-</p>
-
-<p>
-  <strong>Maintanence:</strong>
-  <%= @plane_model.maintanence %>
-</p>
-
-<p>
-  <strong>Pilots:</strong>
-  <%= @plane_model.pilots %>
-</p>
-
-<p>
-  <strong>Hosts:</strong>
-  <%= @plane_model.hosts %>
-</p>
-
-<%= link_to 'Edit', edit_plane_model_path(@plane_model) %> |
 <%= link_to 'Back', plane_models_path %>
