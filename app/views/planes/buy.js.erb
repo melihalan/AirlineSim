@@ -1,0 +1,23 @@
+$('.buy-controls').empty()
+$('.buy-controls').css("display", "block")
+
+<% @seat_configurations.each do |s| %>
+    $('#seat-configuration').append('<input type="radio" name="seat_configurations" value="<%=s.id%>"><%="E#{s.economy_class}/B#{s.business_class}/F#{s.first_class}"%>');
+<% end %>
+
+// Each time count changes, run the function to return que, cost and delivery times.
+<% @que += @count %>
+<% @i = @count %>
+<% while @que > @production_capacity do %>
+  $('#delivery-date-section').append("<p><%=@production_capacity.ceil%> plane(s) will be delivered on <%=@delivery_date%></p>");
+  <% @que -= @production_capacity %>
+  <% @i -= @production_capacity %>
+  <% @delivery_date += ((1/@production_capacity).ceil).month %>
+<% end %>
+<% if @que <= @production_capacity && @que > 1 %>
+  $('#delivery-date-section').append("<p><%=@i%> plane(s) will be delivered on <%=@delivery_date%></p>")
+<% end %>
+
+$('#cost-section').append("<p>Total Cost For <%=@count%> Plane is <%=@count*@cost%></p>");
+
+$('#incentive-section').append("<p><%= @plane_manufacturer.incentive(@user_id, @count*@cost)%></p>");

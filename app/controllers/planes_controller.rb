@@ -28,6 +28,30 @@ class PlanesController < ApplicationController
     end
   end
 
+  def buy
+    @user_id = current_user.id
+    @plane_model_id = params[:plane_model_id].to_i
+    if params[:count]
+      @count = params[:count].to_i
+    else
+      @count = 1
+    end
+    @plane_model = PlaneModel.find(@plane_model_id)
+    @seat_configurations = @plane_model.seat_configuration
+    @cost = @plane_model.cost
+    @production_capacity = PlaneModelFamily.find(@plane_model.plane_model_family_id).production_capacity
+    @plane_manufacturer = PlaneManufacturer.find(PlaneModelFamily.find(@plane_model.plane_model_family_id).plane_manufacturer_id)
+    if OrderBook.where(plane_model_family_id: @plane_model.plane_model_family_id).empty?
+      @que = 0
+    else
+      @que = OrderBook.where(plane_model_family_id: @plane_model.plane_model_family_id).last.que_number + 1
+    end
+    @delivery_date = Turn.last.term + (1 / @production_capacity).ceil.month
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /planes/1/edit
   def edit
     @user_id = current_user.id

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_173311) do
+ActiveRecord::Schema.define(version: 2019_01_18_160010) do
 
   create_table "aircraft_leasings", force: :cascade do |t|
     t.string "name"
@@ -198,14 +198,6 @@ ActiveRecord::Schema.define(version: 2019_01_16_173311) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "airbus_320"
-    t.float "airbus_330"
-    t.float "airbus_350"
-    t.float "airbus_380"
-    t.float "boeing_737"
-    t.float "boeing_747"
-    t.float "boeing_777"
-    t.float "boeing_787"
   end
 
   create_table "plane_model_families", force: :cascade do |t|
@@ -213,6 +205,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_173311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "plane_manufacturer_id"
+    t.float "production_capacity"
     t.index ["plane_manufacturer_id"], name: "index_plane_model_families_on_plane_manufacturer_id"
   end
 
@@ -243,6 +236,7 @@ ActiveRecord::Schema.define(version: 2019_01_16_173311) do
     t.integer "user_id"
     t.integer "location"
     t.integer "seat_configuration_id"
+    t.integer "book_value"
     t.index ["plane_model_id"], name: "index_planes_on_plane_model_id"
     t.index ["seat_configuration_id"], name: "index_planes_on_seat_configuration_id"
     t.index ["user_id"], name: "index_planes_on_user_id"

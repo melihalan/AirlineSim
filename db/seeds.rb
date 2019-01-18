@@ -42,23 +42,15 @@ puts "Territories, Countries and Cities have been loaded."
 
 CSV.foreach(Rails.root.join('lib/seeds/PlaneManufacturers.csv'), headers: true) do |row|
   PlaneManufacturer.create!(
-    name: row[0],
-    airbus_320: row[1],
-    airbus_330: row[2],
-    airbus_350: row[3],
-    airbus_380: row[4],
-    boeing_737: row[5],
-    boeing_747: row[6],
-    boeing_777: row[7],
-    boeing_787: row[8]
+    name: row[0]
   )
 end
 
 CSV.foreach(Rails.root.join('lib/seeds/PlaneModelFamilies.csv'), headers: true) do |row|
   PlaneModelFamily.create!(
-    id: row[0],
-    plane_manufacturer_id: row[1],
-    name: row[2]
+    plane_manufacturer_id: row[0],
+    name: row[1],
+    production_capacity: row[2],
   )
 end
 

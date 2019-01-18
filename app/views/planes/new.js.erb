@@ -1,4 +1,10 @@
-<% if Book.find_by(user_id:@user_id).balance < PlaneModel.find(@plane_model_id).cost %>
+$("#buy-plane-button").attr("plane_model_id", "<%= @plane_model_id %>");
+$("#lease-plane-button").attr("plane_model_id", "<%= @plane_model_id %>");
+<% if Book.find_by(user_id:@user_id).balance > PlaneModel.find(@plane_model_id).cost %>
   $('#errors-section').append("<p>You don't have enough funds to buy this plane, consider leasing!</p>");
+<% else %>
+  $("#buy-plane-button").css("display", "block");
+  $("#buy-plane-button").removeAttr("disabled");
 <% end %>
-$('#lease-plane-button').css("display", "block")
+$('#lease-plane-button').css("display", "block");
+$('#lease-plane-button').removeAttr("disabled");
