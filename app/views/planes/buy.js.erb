@@ -1,23 +1,70 @@
 $('.buy-controls').empty()
 $('.buy-controls').css("display", "block")
+$('.buy-inputs').css("display", "block")
+$('#buy-buttons').empty()
+$('.seat_configuration').empty()
 
-<% @seat_configurations.each do |s| %>
-    $('#seat-configuration').append('<input type="radio" name="seat_configurations" value="<%=s.id%>"><%="E#{s.economy_class}/B#{s.business_class}/F#{s.first_class}"%>');
-<% end %>
-
+if($('#seat-configuration').is(':empty')){
+  $('#seat-configuration').append('<table>\
+    <tr>\
+      <th>Seat Configurations</th>\
+      <th>Economy Class</th>\
+      <th>Business Class</th>\
+      <th>First Class</th>\
+      <th>Total Capacity</th>\
+    </tr>\
+    <% @seat_configurations.each do |s| %>\
+      <tr>\
+        <td><input type="radio" name="seat_configurations" value="<%=s.id%>"><%="E#{s.economy_class}/B#{s.business_class}/F#{s.first_class}"%></td>\
+        <td><%= s.economy_class %></td>\
+        <td><%= s.business_class %></td>\
+        <td><%= s.first_class %></td>\
+        <td><%= s.passenger %></td>\
+      </tr>\
+    <% end %>\
+  </table>');
+  $('input[name="seat_configurations"]:first').attr('checked','true');
+}
 // Each time count changes, run the function to return que, cost and delivery times.
+// Each time seat_configuration changes, run the function return seat_configurations.
+if($('#hub-select').is(':empty')){
+  <% Hub.where(user_id: @user_id).each do |l| %>
+    $('#hub-select').append('<option value="<%=l.id%>"><%=l.name%></option>')
+  <% end %>
+}
+
+
+var $location = $('#hub-select').val()
+var $seat_configuration = $('input[name="seat_configurations"]:checked').val()
+$('#cost-section').append("<p>Total Cost For <%=@count%> Plane is <%=@count*@cost%></p>");
+$('#cost-section').append("<p><%= @incentives[0]%></p>");
+$('#cost-section').append("<h2>Payment Plan:</h2><p>Due now as upfront: <%=0.3*@incentives[1]%></p>");
+<% @investment = 0.3*@incentives[1]%>
+<% @liabilities = [] %>
 <% @que += @count %>
 <% @i = @count %>
 <% while @que > @production_capacity do %>
   $('#delivery-date-section').append("<p><%=@production_capacity.ceil%> plane(s) will be delivered on <%=@delivery_date%></p>");
+  $('#cost-section').append("<p>Due <%= @delivery_date %>: <%= @incentives[1]/@count*@production_capacity.ceil*0.7 %></p>");
+  <% @liabilities.insert(-1,{
+    book_id: Book.find_by(user_id: @user_id).id,
+    term: @delivery_date,
+    category: "Plane Order - Delivery Payment",
+    value: @incentives[1]/@count*@production_capacity.ceil*0.7,
+    description: "Delivery payment for #{@production_capacity} #{@plane_model.name}"}) %>
   <% @que -= @production_capacity %>
   <% @i -= @production_capacity %>
   <% @delivery_date += ((1/@production_capacity).ceil).month %>
 <% end %>
-<% if @que <= @production_capacity && @que > 1 %>
+<% if @que <= @production_capacity && @que >= 1 %>
   $('#delivery-date-section').append("<p><%=@i%> plane(s) will be delivered on <%=@delivery_date%></p>")
+  $('#cost-section').append("<p>Due <%= @delivery_date %>: <%= @incentives[1]/@count*@i*0.7 %></p>");
+  <% @liabilities.insert(-1,{
+    book_id: Book.find_by(user_id: @user_id).id,
+    term: @delivery_date,
+    category: "Plane Order - Delivery Payment",
+    value: @incentives[1]/@count*@i*0.7,
+    description: "Delivery payment for #{@i} #{@plane_model.name}"}) %>
 <% end %>
 
-$('#cost-section').append("<p>Total Cost For <%=@count%> Plane is <%=@count*@cost%></p>");
-
-$('#incentive-section').append("<p><%= @plane_manufacturer.incentive(@user_id, @count*@cost)%></p>");
+$('#incentive-section').append('<button data-params="liabilities=<%=@liabilities%>, investment=<%=@investment%>, plane_model_id=<%=@plane_model_id%>, user_id=<%=@user_id%>, location='+$location+', seat_configuration_id='+$seat_configuration+', book_value=<%=@plane_model.cost%>, count=<%=@count%>" type="button" data-remote="true" data-url="/planes/order">Accept The Terms</button>')

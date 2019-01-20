@@ -41,6 +41,7 @@ class PlanesController < ApplicationController
     @cost = @plane_model.cost
     @production_capacity = PlaneModelFamily.find(@plane_model.plane_model_family_id).production_capacity
     @plane_manufacturer = PlaneManufacturer.find(PlaneModelFamily.find(@plane_model.plane_model_family_id).plane_manufacturer_id)
+    @incentives = @plane_manufacturer.incentive(@user_id, @cost, @count)
     if OrderBook.where(plane_model_family_id: @plane_model.plane_model_family_id).empty?
       @que = 0
     else
@@ -50,6 +51,21 @@ class PlanesController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def order
+    @liabilities = params[:liabilities]
+    @investment = params[:investment]
+    @plane_model_id = params[:plane_model_id].to_i
+    @user_id = params[:user_id].to_i
+    @location_id = params[:location].to_i
+    @seat_configuration_id = params[:seat_configuration_id].to_i
+    @book_value = params[:book_value].to_i
+    @count = params[:count].to_i
+
+
+    redirect_to root_path, notice: 'Your order has been successfully placed.'
+
   end
 
   # GET /planes/1/edit

@@ -1,6 +1,9 @@
+$('.buy-buttons').empty()
 $('.buy-controls').empty()
 $('.buy-controls').css("display", "none")
-
+$('.buy-inputs').empty()
+$('.buy-inputs').css("display", "none")
+$('#plane-count').val(1)
 $('#errors-section').empty()
 $('#pla_mod-detail-section').empty()
 $('#pla_mod-detail-section').append("<%= j render partial: 'plane_models/show' %>");
@@ -13,6 +16,4 @@ if ($('meta[name=pjs]').attr('controller') == 'planes' && $('meta[name=pjs]').at
     global: false,
     dataType: "script",
   });
-  $('#buy-plane-button').attr("data-params", "plane_model_id="+$plane_model_id+"");
-  $('#lease-plane-button').attr("data-params", "plane_model_id="+$plane_model_id+"");
 }

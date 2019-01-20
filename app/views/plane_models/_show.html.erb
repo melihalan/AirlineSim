@@ -23,7 +23,7 @@
       <th>Total Capacity</th>
     </tr>
     <% @seat_configurations.each do |sc| %>
-    <tr>
+    <tr class="sc-rows">
       <td><%= "E#{sc.economy_class}/B#{sc.business_class}/F#{sc.first_class}"%></td>
       <td><%= sc.economy_class %></td>
       <td><%= sc.business_class %></td>

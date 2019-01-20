@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_160010) do
+ActiveRecord::Schema.define(version: 2019_01_19_165714) do
 
   create_table "aircraft_leasings", force: :cascade do |t|
     t.string "name"
@@ -175,6 +175,7 @@ ActiveRecord::Schema.define(version: 2019_01_18_160010) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "term"
     t.index ["book_id"], name: "index_liabilities_on_book_id"
     t.index ["turn_id"], name: "index_liabilities_on_turn_id"
   end

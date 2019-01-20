@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :schedules
   resources :planes do
     get :buy, on: :collection
+    get :order, on: :collection
   end
   resources :xroutes
   resources :hubs
